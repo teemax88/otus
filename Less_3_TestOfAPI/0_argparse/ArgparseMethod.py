@@ -5,7 +5,12 @@ parser = argparse.ArgumentParser()
 """
     Все параметры для add_argument
     
-    name or flags - Either a name or a list of option strings, e.g. foo or -f, --foo.
+    Метод add_argument() объекта ArgumentParser определяет, как следует анализировать один аргумент командной строки
+    
+    name or flags - должен знать, ожидается ли необязательный параметр, например -f или --foo, или позиционный параметр командной строки, например список имен файлов.
+    Например, необязательный параметр командной строки может быть создан следующим образом: parser.add_argument('-f', '--foo')
+    Обязательный позиционный параметр командной строки может быть создан следующим образом: parser.add_argument('bar')
+    
     action - The basic type of action to be taken when this argument is encountered at the command line.
     nargs - The number of command-line arguments that should be consumed.
     const - A constant value required by some action and nargs selections.
@@ -29,13 +34,13 @@ parser.add_argument('--url', '-u',
                     help='Url to make request to',
                     required=True)
 
-# Если параметр передан то Ture, иначе False
+# Если параметр передан то True, иначе False
 parser.add_argument('--true', '-t',
                     action='store_true',
                     help='True or false param',
                     required=False)
 
-# Добавляение значений в список по параметру
+# Добавление значений в список по параметру
 # python3 ArgparseMethod.py --url=ya.ru -s
 parser.add_argument('--save', '-s',
                     action='append_const',
@@ -45,7 +50,7 @@ parser.add_argument('--save', '-s',
                     help='Store params in list',
                     required=False)
 
-# Добавляение значений в список по параметру
+# Добавление значений в список по параметру
 # python3 ArgparseMethod.py --url=ya.ru -s -s2
 parser.add_argument('--save2', '-s2',
                     action='append_const',
